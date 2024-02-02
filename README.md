@@ -1,0 +1,1 @@
+# fastapi_pg_el_rmq
