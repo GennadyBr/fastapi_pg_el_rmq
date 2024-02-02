@@ -17,8 +17,8 @@ class User(Base):
             'char_length(username) > 5',
             name='username_min_length'
         ),
-        CheckConstraint(
-            "regexp_like(email,'^[a-zA-Z][a-zA-Z0-9_\.\-]+@([a-zA-Z0-9-]{2,}\.)+([a-zA-Z]{2,4}|[a-zA-Z]{2}\.[a-zA-Z]{2})$')",
-            name='emailcheck'
-        ),
+        # CheckConstraint(
+        #     "regexp_like(email,'^[a-zA-Z][a-zA-Z0-9_\.\-]+@([a-zA-Z0-9-]{2,}\.)+([a-zA-Z]{2,4}|[a-zA-Z]{2}\.[a-zA-Z]{2})$')",
+        #     name='emailcheck'
+        # ),
     )
