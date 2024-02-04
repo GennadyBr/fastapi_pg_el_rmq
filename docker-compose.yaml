@@ -7,7 +7,7 @@ services:
     ports:
       - ${APP_PORT}:${APP_PORT}
     volumes:
-      - ./src:/src
+      - .:/src
       - ./fastapi-logs:/src/logs
     env_file:
       - .env
@@ -20,9 +20,9 @@ services:
     env_file:
       - .env
     environment:
-      POSTGRES_DB: ${PG_DB_2401_DB}
-      POSTGRES_USER: ${PG_DB_2401_USER}
-      POSTGRES_PASSWORD: ${PG_DB_2401_PASSWORD}
+      POSTGRES_DB: ${PG_DB_2402_DB}
+      POSTGRES_USER: ${PG_DB_2402_USER}
+      POSTGRES_PASSWORD: ${PG_DB_2402_PASSWORD}
     ports:
       - 5432:5432
     volumes:

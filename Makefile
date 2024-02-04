@@ -31,7 +31,7 @@ net:
 5433:
 	sudo lsof -i -P -n | grep 5433
 
-8000:
+8002:
 	sudo lsof -i -P -n | grep 8002
 
 log:
