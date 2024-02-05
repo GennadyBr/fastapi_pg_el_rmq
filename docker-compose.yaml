@@ -1,0 +1,32 @@
+version: "3.0"
+services:
+  app_2402:
+    build: .
+    container_name: app_2402
+    restart: always
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+    volumes:
+      - .:/src
+      - ./logs:/src/logs
+    env_file:
+      - .env
+    command: uvicorn main:app --reload --host 0.0.0.0 --port ${APP_PORT}
+
+  db_pg_2402:
+    image: postgres:13
+    container_name: db_pg_2402
+    restart: always
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${PG_DB_2402_DB}
+      POSTGRES_USER: ${PG_DB_2402_USER}
+      POSTGRES_PASSWORD: ${PG_DB_2402_PASSWORD}
+    ports:
+      - 5432:5432
+    volumes:
+      - db_pg_2402:/var/lib/postgresql/data
+
+volumes:
+  db_pg_2402:
