@@ -71,7 +71,8 @@ app.include_router(main_api_router)
 
 @app.on_event("startup")
 async def startup_event():
-    LOGGER.info("--- Start up App ---")
+    LOGGER.info(""
+                "--- Start up App ---")
 
 
 @app.on_event("shutdown")
