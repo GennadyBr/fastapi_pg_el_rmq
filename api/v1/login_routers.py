@@ -1,5 +1,6 @@
 from datetime import timedelta
 from logging import getLogger
+from typing import Any
 
 from fastapi import APIRouter
 from fastapi import Depends
@@ -21,10 +22,9 @@ login_router = APIRouter()
 @login_router.post("/", response_model=Token)
 async def login_for_access_token(
     form_data: OAuth2PasswordRequestForm = Depends(), db: AsyncSession = Depends(get_db)
-) -> dict:
+) -> dict[str, str | Any]:
     """Login for access token and return dict with token and bearer"""
     # LOGGER.info(f"def login_for_access_token({form_data=}):")
-    # form_data.username is email, because we don't have username (name and surname)
     user = await authenticate_user(form_data.username, form_data.password, db)
     if not user:
         raise HTTPException(
@@ -36,4 +36,8 @@ async def login_for_access_token(
         data={"sub": user.username, "other_custom_data": [1, 2, 3, 4]},
         expires_delta=access_token_expires,
     )
-    return {"access_token": access_token, "token_type": "bearer"}
+    response = {"access_token": access_token, "token_type": "bearer"}
+    LOGGER.info(
+        f"RESPONSE {response}"
+    )
+    return response

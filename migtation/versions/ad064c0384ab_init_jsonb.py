@@ -1,16 +1,16 @@
-"""init
+"""init JSONB
 
-Revision ID: b4889d5aa8a2
+Revision ID: ad064c0384ab
 Revises: 
-Create Date: 2024-02-02 19:20:55.199650
+Create Date: 2024-02-04 17:38:39.005896
 
 """
 from alembic import op
 import sqlalchemy as sa
-
+from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = 'b4889d5aa8a2'
+revision = 'ad064c0384ab'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,8 +23,7 @@ def upgrade() -> None:
     sa.Column('username', sa.String(length=36), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('password', sa.String(length=255), nullable=False),
-    sa.Column('config', sa.JSON(), nullable=False),
-    # sa.CheckConstraint("regexp_like(email,'^[a-zA-Z][a-zA-Z0-9_\\.\\-]+@([a-zA-Z0-9-]{2,}\\.)+([a-zA-Z]{2,4}|[a-zA-Z]{2}\\.[a-zA-Z]{2})$')", name='emailcheck'),
+    sa.Column('config', postgresql.JSONB(astext_type=sa.Text()), nullable=False),
     sa.CheckConstraint('char_length(username) > 5', name='username_min_length'),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),

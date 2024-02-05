@@ -1,3 +1,4 @@
+from logging import getLogger
 from typing import Union
 
 from fastapi import Depends
@@ -8,21 +9,22 @@ from jose import JWTError
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
-from db.dals import UserDAL
+from db.crud import UserCRUD
 from db.models import User
 from db.session import get_db
 from .hashing import Hasher
 from settings import settings
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
-
+LOGGER = getLogger(__name__)
 
 async def _get_user_by_username_for_auth(
     username: str, session: AsyncSession
 ) -> Union[User, None]:
-    """Get user by email for authentication, return User.user_id"""
+    """Get user by email for authentication, return User"""
+    # LOGGER.info(f"Getting user for username: {username}")
     async with session.begin():
-        user_dal = UserDAL(session)
+        user_dal = UserCRUD(session)
         user = await user_dal.get_user_by_username(
             username=username,
         )
@@ -33,6 +35,7 @@ async def authenticate_user(
     username: str, password: str, db: AsyncSession
 ) -> Union[User, None]:
     """Authenticate user by email and password with session, return user"""
+    # LOGGER.info(f"Authenticate user {username}, {password=}")
     user = await _get_user_by_username_for_auth(username=username, session=db)
     if user is None:
         return
@@ -45,6 +48,7 @@ async def get_current_user_from_token(
     token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_db)
 ):
     """Get current user from token and session, return user"""
+    # LOGGER.info(f"Getting current user for {token}")
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
