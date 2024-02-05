@@ -18,8 +18,9 @@ from settings import settings
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 LOGGER = getLogger(__name__)
 
+
 async def _get_user_by_username_for_auth(
-    username: str, session: AsyncSession
+        username: str, session: AsyncSession
 ) -> Union[User, None]:
     """Get user by email for authentication, return User"""
     # LOGGER.info(f"Getting user for username: {username}")
@@ -32,7 +33,7 @@ async def _get_user_by_username_for_auth(
 
 
 async def authenticate_user(
-    username: str, password: str, db: AsyncSession
+        username: str, password: str, db: AsyncSession
 ) -> Union[User, None]:
     """Authenticate user by email and password with session, return user"""
     # LOGGER.info(f"Authenticate user {username}, {password=}")
@@ -45,7 +46,8 @@ async def authenticate_user(
 
 
 async def get_current_user_from_token(
-    token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_db)
+        token: str = Depends(oauth2_scheme),
+        db: AsyncSession = Depends(get_db)
 ):
     """Get current user from token and session, return user"""
     # LOGGER.info(f"Getting current user for {token}")
