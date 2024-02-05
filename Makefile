@@ -17,7 +17,7 @@ ps:
 	docker compose ps
 
 al:
-	sudo alembic upgrade heads && cd tests && alembic upgrade heads
+	sudo alembic upgrade heads
 
 main:
 	sudo python main.py
@@ -28,8 +28,8 @@ venv:
 net:
 	sudo docker network create nginx_proxy
 
-5433:
-	sudo lsof -i -P -n | grep 5433
+5432:
+	sudo lsof -i -P -n | grep 5432
 
 8002:
 	sudo lsof -i -P -n | grep 8002
