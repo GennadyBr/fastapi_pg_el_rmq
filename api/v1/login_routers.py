@@ -1,6 +1,5 @@
 from datetime import timedelta
 from logging import getLogger
-from typing import Any
 
 from fastapi import APIRouter
 from fastapi import Depends
