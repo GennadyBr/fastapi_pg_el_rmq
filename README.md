@@ -2,55 +2,56 @@
 
 [Ссылка на GitHub](https://github.com/GennadyBr/fastapi_pg_jwt_email)
 
+### Задача:
+    • Используйте фреймворк FastAPI и базу данных PostgreSQL. 
+    • Разработайте API для управления пользователями. 
+
 
 ## Проект развернут на VPS
 [Ссылка на VPS](http://5.35.83.245:8002/docs)
 
 ### Логи выводятся в консоль и в файл
-logs/fastapi_elk.log
+    logs/fastapi_elk.log
 
 ### Авторизация
-для http://5.35.83.245:8002/login
-используйте:
-login abcd12
-password abcd12
+    для http://5.35.83.245:8002/login
+    используйте:
+    login abcd12
+    password abcd12
 
 ## Для локального запуска выполните следующие команды
 
 ### Скопируйте репозиторий:
-git clone https://github.com/GennadyBr/fastapi_pg_jwt_email.git
+    git clone https://github.com/GennadyBr/fastapi_pg_jwt_email.git
 
 ### Переименуйте файл .env.example в .env:
 
 ### Запустите контейнеры:
-make up
+    make up
 
 ### Сделайте миграцию alembic:
-make al
+    make al
 
 ### Перейдите в папку с проектом:
-cd fastapi_pg_jwt_email
+    cd fastapi_pg_jwt_email
 
 ### Запустите проект:
-python main.py
+    python main.py
 
 ### Перейдите по ссылке:
 http://0.0.0.0:8002/docs
 
 ### Логи выводятся в консоль и в файл
-logs/fastapi_elk.log
+    logs/fastapi_elk.log
 
 ### Авторизация
-для http://0.0.0.0:8002/login
-используйте:
-login abcd12
-password abcd12
+    для http://0.0.0.0:8002/login
+    используйте:
+    login abcd12
+    password abcd12
 
 
 
-### Требования:
-    • Используйте фреймворк FastAPI и базу данных PostgreSQL. 
-    • Разработайте API для управления пользователями. 
 ### Описание модели данных: 
 ### Создайте модель пользователя с полями: 
     • id: целое число, автоматически генерируется при создании пользователя. 
